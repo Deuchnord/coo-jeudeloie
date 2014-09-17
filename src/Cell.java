@@ -20,8 +20,7 @@ public interface Cell {
 	public int getIndex();
 	
 	/**
-	 * Returns the cell that the player really by a player reaches when he arrives on this cell,
-	 * depending on the value returned by the dice.
+	 * Returns the cell that the player really reached by a player when he arrives on this cell
 	 * @param diceThrow the result of the dice when the player reaches this cell
 	 * @return the index of the cell really reached by the player
 	 */
