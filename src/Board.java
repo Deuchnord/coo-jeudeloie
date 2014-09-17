@@ -1,18 +1,19 @@
 
 public class Board {
 	private Cell[] cells;
+	public final int LAST_CELL;
 	
 	
 	public Board()
 	{
-		
+		LAST_CELL = 63;
 	}
 	
-	public Board(int[] trapCells, int[] gooseCell, int[] teleportCell, int[] WaitCell)
-	{
-		
-	}
-	
+	/**
+	 * Swap the location of two players
+	 * @param p1
+	 * @param p2
+	 */
 	public void swapPlayer(Player p1,Player p2)
 	{
 		Cell temporaryCell;
@@ -27,6 +28,9 @@ public class Board {
 	}
 	
 	public normalize()
+	{
+		
+	}
 	
 	
 
