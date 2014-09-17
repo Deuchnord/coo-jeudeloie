@@ -27,7 +27,7 @@ public class Player {
 	 */
 	public void setCell(Cell newCell)
 	{
-		this.playerCell=newCell;
+		this.playerCell = newCell;
 	}
 
 }
