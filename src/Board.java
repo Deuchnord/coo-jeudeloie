@@ -1,6 +1,6 @@
 
 public class Board {
-	private Cell[] Cells;
+	private Cell[] cells;
 	
 	
 	public Board()
@@ -8,7 +8,7 @@ public class Board {
 		
 	}
 	
-	public Board(int[] )
+	public Board(int[] trapCells, int[] gooseCell, int[] teleportCell, int[] WaitCell)
 	{
 		
 	}
