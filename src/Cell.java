@@ -19,6 +19,30 @@ public interface Cell {
 	 */
 	public int getIndex();
 	
+	/**
+	 * Returns the cell that the player really by a player reaches when he arrives on this cell,
+	 * depending on the value returned by the dice.
+	 * @param diceThrow the result of the dice when the player reaches this cell
+	 * @return the index of the cell really reached by the player
+	 */
 	public int handleMove(int diceThrow);
+	
+	/**
+	 * Indicates if a player is already on the cell
+	 * @return true if the cell is already occupied
+	 */
+	public boolean isBusy();
+	
+	/**
+	 * Returns the player currently on the cell (<code>null</code> if there are no players)
+	 * @return the player currently on the cell
+	 */
+	public Player getPlayer();
+	 
+	/**
+	 * Remembers <code>player</code> to be on this cell.
+	 * @param player the player who reached the cell.
+	 */
+	public void welcome(Player player);
 	
 }
