@@ -1,3 +1,5 @@
+import java.io.File;
+
 
 public class Board {
 	private Cell[] cells;
@@ -7,6 +9,13 @@ public class Board {
 	public Board()
 	{
 		LAST_CELL = 63;
+	}
+	
+	public Board(String configFile) {
+		
+		File f = new File(configFile);
+		
+		
 	}
 	
 	/**
