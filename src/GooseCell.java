@@ -12,7 +12,7 @@ public class GooseCell extends AbstractCell {
 	@Override
 	public int handleMove(int d) {
 		
-		
+		 return this.index + diceThrow;
 		
 	}
 	
