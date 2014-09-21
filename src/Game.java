@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Game {
 	private Board usingBoard;
@@ -24,6 +25,21 @@ public class Game {
 			gameSet=true;
 		}
 		return gameSet;
+	}
+	
+	/**
+	 * 
+	 * @return the sum of 2D6 (two dices of six faces) with two numbers generated randomly.
+	 */
+	public int throwDie()
+	{
+		Random randomGenerator1=new Random();
+		Random randomGenerator2 = new Random();
+		int firstDie =randomGenerator1.nextInt(6)+1;
+		int secondDie=randomGenerator2.nextInt(6)+1;
+		return firstDie+secondDie;
+		
+		
 	}
 	
 
