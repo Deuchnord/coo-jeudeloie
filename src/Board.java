@@ -20,7 +20,7 @@ public class Board {
 	
 	/**
 	 * Swap the location of two players
-	 * @param p1
+	 * @param p1 
 	 * @param p2
 	 */
 	public void swapPlayer(Player p1,Player p2)
@@ -37,6 +37,11 @@ public class Board {
 	}
 	
 	public normalize()
+	{
+		
+	}
+	
+	public void playTurn(Player player, int resultDices)
 	{
 		
 	}
