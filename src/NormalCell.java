@@ -6,11 +6,5 @@ public class NormalCell extends AbstractCell {
 		super();
 		this.index=index;
 	}
-	@Override
-public int handleMove(int d) {
-		
-		
-		
-	}
 
 }

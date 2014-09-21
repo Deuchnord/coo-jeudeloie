@@ -21,7 +21,7 @@ public abstract class AbstractCell implements Cell {
 
 	@Override
 	public int handleMove(int diceThrow) {
-		return this.index;
+		return this.index + diceThrow;
 	}
 
 	@Override
