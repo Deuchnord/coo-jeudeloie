@@ -15,6 +15,24 @@ public class Game {
 	
 	public void play()
 	{
+		int score;
+		Player playerThisTurn=this.nextPlayer();
+		if(playerThisTurn.getCell().canBeLeftNow())
+		{
+			score=this.throwDie();
+			int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
+			Cell targetCell=usingBoard.getCell(index);
+			index=usingBoard.normalize(targetCell.handleMove(score));
+			targetCell=usingBoard.getCell(index);
+			
+			if(targetCell.isBusy())
+			{
+				usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
+			}
+			else
+				playerThisTurn.setCell(targetCell);
+			
+		}
 		
 	}
 	
