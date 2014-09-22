@@ -31,6 +31,7 @@ public class Game {
 			}
 			else
 				playerThisTurn.setCell(targetCell);
+				targetCell.welcome(playerThisTurn);
 			
 		}
 		
@@ -42,7 +43,7 @@ public class Game {
 	public boolean isFinished()
 	{
 		boolean gameSet;
-		if(this.usingBoard.getCell(63).getPlayer()==null)
+		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer()==null)
 		{
 			gameSet=false;
 		}

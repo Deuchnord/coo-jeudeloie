@@ -62,16 +62,15 @@ public class Board {
 		return cells[indexCell];
 	}
 	
-	public int normalize(int supposedCell)
+	public int normalize(int supposedIndexCell)
 	{
-		if(supposedCell>LAST_CELL)
+		if(supposedIndexCell>LAST_CELL)
+			supposedIndexCell+=LAST_CELL-supposedIndexCell;
+		return supposedIndexCell;
 			
 	}
 	
-	public void playTurn(Player player, int resultDices)
-	{
-		
-	}
+	
 	
 	
 
