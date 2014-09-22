@@ -11,6 +11,7 @@ public class Game {
 		this.usingBoard=new Board();
 		this.noPlayer=0;
 		this.listPlayers=new ArrayList<Player>();
+	
 	}
 	
 	public void play()
@@ -76,7 +77,12 @@ public class Game {
 	{
 		Player nxtPlayer;
 		nxtPlayer=listPlayers.get(noPlayer);
-		noPlayer++;
+		if(noPlayer==listPlayers.size()-1)
+		{
+			noPlayer=0;
+		}
+		else
+			noPlayer++;
 		return nxtPlayer;
 	}
 	
