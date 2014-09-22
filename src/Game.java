@@ -13,6 +13,9 @@ public class Game {
 		this.listPlayers=new ArrayList<Player>();
 	}
 	
+	/**
+	 * function that plays the game.
+	 */
 	public void play()
 	{
 		int score;
@@ -30,6 +33,7 @@ public class Game {
 				usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
 			}
 			else
+				targetCell.welcome(playerThisTurn);
 				playerThisTurn.setCell(targetCell);
 			
 		}
