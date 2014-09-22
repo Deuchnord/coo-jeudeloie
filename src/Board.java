@@ -22,7 +22,25 @@ public class Board {
 		FileInputStream input = new FileInputStream(configFile);
 		BufferedReader file = new BufferedReader(new InputStreamReader(input));
 		
-		file.readLine();
+		String line = "";
+		
+		while((line = file.readLine()) != null) {
+			
+			String[] words = line.split(" ");
+			for(int i = 0; i < words.length; i++) {
+				
+				String word = words[i].toLowerCase();
+				
+				if(word.equals("number_cells")) {
+					i = 1;
+					word = words[i];
+					LAST_CELL = Integer.parseInt(word);
+				}
+				
+			}
+			
+		}
+		
 		
 	}
 	
