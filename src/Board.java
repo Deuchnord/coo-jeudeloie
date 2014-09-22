@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class Board {
@@ -11,10 +17,12 @@ public class Board {
 		LAST_CELL = 63;
 	}
 	
-	public Board(String configFile) {
+	public Board(String configFile) throws IOException {
 		
-		File f = new File(configFile);
+		FileInputStream input = new FileInputStream(configFile);
+		BufferedReader file = new BufferedReader(new InputStreamReader(input));
 		
+		file.readLine();
 		
 	}
 	
