@@ -23,6 +23,7 @@ public class Board {
 		BufferedReader file = new BufferedReader(new InputStreamReader(input));
 		
 		String line = "";
+		int lastCell = 0;
 		
 		while((line = file.readLine()) != null) {
 			
@@ -34,13 +35,16 @@ public class Board {
 				if(word.equals("number_cells")) {
 					i = 1;
 					word = words[i];
-					LAST_CELL = Integer.parseInt(word);
+					lastCell = Integer.parseInt(word);
 				}
 				
 			}
 			
 		}
 		
+		file.close();
+		
+		LAST_CELL = lastCell;
 		
 	}
 	
