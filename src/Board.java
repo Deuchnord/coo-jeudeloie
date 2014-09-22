@@ -25,19 +25,21 @@ public class Board {
 		String line = "";
 		int lastCell = 0;
 		
-		while((line = file.readLine()) != null) {
+		while((line = file.readLine().toLowerCase()) != null) {
 			
 			String[] words = line.split(" ");
-			for(int i = 0; i < words.length; i++) {
 				
-				String word = words[i].toLowerCase();
-				
-				if(word.equals("number_cells")) {
-					i = 1;
-					word = words[i];
-					lastCell = Integer.parseInt(word);
+			String command = words[0].toLowerCase();
+			
+			if(command.equals("number_cells")) {
+				command = words[1];
+				lastCell = Integer.parseInt(command);
+			}
+			
+			if(command.equals("goose")) {
+				for(int i = 1; i < words.length;i++) {
+					
 				}
-				
 			}
 			
 		}
