@@ -62,6 +62,10 @@ public class Board {
 		return cells[indexCell];
 	}
 	
+	/**
+	 * @param supposedIndexCell The cell to check.
+	 * @return the cell's index normalised.
+	 */
 	public int normalize(int supposedIndexCell)
 	{
 		if(supposedIndexCell>LAST_CELL)
