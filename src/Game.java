@@ -1,11 +1,16 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
 	private Board usingBoard;
+	private int noPlayer;
+	private ArrayList<Player> listPlayers;
 	
 	public Game()
 	{
 		this.usingBoard=new Board();
+		this.noPlayer=0;
+		this.listPlayers=new ArrayList<Player>();
 	}
 	
 	public void play()
@@ -13,6 +18,9 @@ public class Game {
 		
 	}
 	
+	/**
+	 * @return return if the game is finished or not.
+	 */
 	public boolean isFinished()
 	{
 		boolean gameSet;
@@ -41,6 +49,19 @@ public class Game {
 		
 		
 	}
+	
+	/**
+	 * @return the next player who will play.
+	 */
+	public Player nextPlayer()
+	{
+		Player nxtPlayer;
+		nxtPlayer=listPlayers.get(noPlayer);
+		noPlayer++;
+		return nxtPlayer;
+	}
+	
+	
 	
 
 }
