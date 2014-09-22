@@ -62,9 +62,10 @@ public class Board {
 		return cells[indexCell];
 	}
 	
-	public normalize()
+	public int normalize(int supposedCell)
 	{
-		
+		if(supposedCell>LAST_CELL)
+			
 	}
 	
 	public void playTurn(Player player, int resultDices)
