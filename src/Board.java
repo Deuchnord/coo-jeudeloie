@@ -14,7 +14,7 @@ public class Board {
 	/**
 	 * Default constructor. This creates a classic board.
 	 * Corresponds to calling Board("boards/default").
-	 * @throws IOException appends if the file could not be opened.
+	 * @throws IOException happens if the file could not be opened.
 	 */
 	public Board() throws IOException
 	{		
