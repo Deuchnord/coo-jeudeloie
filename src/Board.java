@@ -25,7 +25,7 @@ public class Board {
 	 * Read the documentation about the board configuration files for more details.
 	 * TODO write documentation about board configuration file
 	 * @param configFile the path to the board configuration file
-	 * @throws IOException appends if the file could not be opened or if the file contains mistakes
+	 * @throws IOException happens if the file could not be opened or if the file contains mistakes
 	 */
 	public Board(String configFile) throws IOException {
 		
@@ -118,8 +118,4 @@ public class Board {
 			
 	}
 	
-	
-	
-	
-
 }

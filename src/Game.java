@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ public class Game {
 	private int noPlayer;
 	private ArrayList<Player> listPlayers;
 	
-	public Game()
+	public Game() throws IOException
 	{
 		this.usingBoard=new Board();
 		this.noPlayer=0;
