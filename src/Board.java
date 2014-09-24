@@ -18,7 +18,7 @@ public class Board {
 	 */
 	public Board() throws IOException
 	{		
-		this("boards/default");
+		this("/home/l3/tanghe/Documents/COO/jeudeloie/boards/default");
 	}
 	/**
 	 * Constructs a board with custom cells placement.
@@ -29,14 +29,17 @@ public class Board {
 	 */
 	public Board(String configFile) throws IOException {
 		
-		FileInputStream input = new FileInputStream(configFile);
-		BufferedReader file = new BufferedReader(new InputStreamReader(input));
+		//FileInputStream input = new FileInputStream(configFile);
+		//BufferedReader file = new BufferedReader(new InputStreamReader(input));
+		File input = new File(configFile);
+		BufferedReader file = new BufferedReader(new FileReader(input));
+
 		
 		String line = "";
 		int lastCell = 0;
 		
-		while((line = file.readLine().toLowerCase()) != null) {
-			
+		while((line = file.readLine()) != null) {
+			line = line.toLowerCase();
 			String[] words = line.split(" ");
 				
 			String command = words[0].toLowerCase();
@@ -44,6 +47,7 @@ public class Board {
 			if(command.equals("number_cells")) {
 				command = words[1];
 				lastCell = Integer.parseInt(command);
+				cells = new Cell[lastCell+1];
 			}
 			
 			else if(command.equals("goose")) {
@@ -77,8 +81,10 @@ public class Board {
 					cells[index] = new TeleportCell(index, dest);
 				}
 			}
-			else
+			else {
+				file.close();
 				throw new IOException("Parse error: unknown key word "+words[0]+" on line "+line);
+			}
 			
 		}
 		
@@ -112,10 +118,20 @@ public class Board {
 	 */
 	public int normalize(int supposedIndexCell)
 	{
-		if(supposedIndexCell>LAST_CELL)
-			supposedIndexCell+=LAST_CELL-supposedIndexCell;
-		return supposedIndexCell;
+		int normalizedIndex = 0;
+		
+		if(supposedIndexCell > LAST_CELL) {
+			normalizedIndex = supposedIndexCell - LAST_CELL;
+			return LAST_CELL - normalizedIndex;
+		}
+		else
+			return supposedIndexCell;
 			
 	}
+	
+	public static void main(String[] args) throws Exception {
+		Board b = new Board();
+	}
+	
 	
 }
