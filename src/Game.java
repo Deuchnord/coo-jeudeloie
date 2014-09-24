@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,11 +7,12 @@ public class Game {
 	private int noPlayer;
 	private ArrayList<Player> listPlayers;
 	
-	public Game()
+	public Game() throws IOException
 	{
 		this.usingBoard=new Board();
 		this.noPlayer=0;
 		this.listPlayers=new ArrayList<Player>();
+	
 	}
 	
 	/**
@@ -35,6 +37,7 @@ public class Game {
 			else
 				targetCell.welcome(playerThisTurn);
 				playerThisTurn.setCell(targetCell);
+				targetCell.welcome(playerThisTurn);
 			
 		}
 		
@@ -46,7 +49,7 @@ public class Game {
 	public boolean isFinished()
 	{
 		boolean gameSet;
-		if(this.usingBoard.getCell(63).getPlayer()==null)
+		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer()==null)
 		{
 			gameSet=false;
 		}
@@ -79,7 +82,12 @@ public class Game {
 	{
 		Player nxtPlayer;
 		nxtPlayer=listPlayers.get(noPlayer);
-		noPlayer++;
+		if(noPlayer==listPlayers.size()-1)
+		{
+			noPlayer=0;
+		}
+		else
+			noPlayer++;
 		return nxtPlayer;
 	}
 	
