@@ -17,8 +17,13 @@ public class Board {
 	 * @throws IOException happens if the file could not be opened.
 	 */
 	public Board() throws IOException
+<<<<<<< HEAD
 	{		
 		this("/home/l3/tanghe/Documents/COO/jeudeloie/boards/default");
+=======
+	{		LAST_CELL=63;
+		//this("boards/default");
+>>>>>>> 71f7e5f3f875404137b196bf27177cdf57d3e2e7
 	}
 	/**
 	 * Constructs a board with custom cells placement.
@@ -112,6 +117,8 @@ public class Board {
 		return cells[indexCell];
 	}
 	
+
+
 	/**
 	 * @param supposedIndexCell The cell to check.
 	 * @return the cell's index normalised.
@@ -129,9 +136,13 @@ public class Board {
 			
 	}
 	
+<<<<<<< HEAD
 	public static void main(String[] args) throws Exception {
 		Board b = new Board();
 	}
 	
 	
+=======
+
+>>>>>>> 71f7e5f3f875404137b196bf27177cdf57d3e2e7
 }
