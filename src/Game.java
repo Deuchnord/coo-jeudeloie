@@ -7,11 +7,11 @@ public class Game {
 	private int noPlayer;
 	private ArrayList<Player> listPlayers;
 	
-	public Game() throws IOException
+	public Game(ArrayList playersList) throws IOException
 	{
 		this.usingBoard=new Board();
 		this.noPlayer=0;
-		this.listPlayers=new ArrayList<Player>();
+		this.listPlayers=playersList;
 	
 	}
 	

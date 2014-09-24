@@ -17,8 +17,8 @@ public class Board {
 	 * @throws IOException happens if the file could not be opened.
 	 */
 	public Board() throws IOException
-	{		
-		this("boards/default");
+	{		LAST_CELL=63;
+		//this("boards/default");
 	}
 	/**
 	 * Constructs a board with custom cells placement.
@@ -106,18 +106,8 @@ public class Board {
 		return cells[indexCell];
 	}
 	
-<<<<<<< HEAD
-	public int normalize(int supposedIndexCell)
-	{
-		if(supposedIndexCell>LAST_CELL)
-			supposedIndexCell-=supposedIndexCell-LAST_CELL;
-		return supposedIndexCell;
-	}
-	
-	
-	
 
-=======
+
 	/**
 	 * @param supposedIndexCell The cell to check.
 	 * @return the cell's index normalised.
@@ -130,5 +120,5 @@ public class Board {
 			
 	}
 	
->>>>>>> f44841a2e09e4c1a7de338620718f720a8d31819
+
 }
