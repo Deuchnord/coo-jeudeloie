@@ -1,7 +1,6 @@
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-
 import org.junit.Test;
 
 
@@ -38,11 +37,13 @@ public class BoardTest {
 		Player p2 = new Player("player2");
 		
 		b.getCell(10).welcome(p1);
+		p1.setCell(b.getCell(10));
 		b.getCell(42).welcome(p2);
+		p2.setCell(b.getCell(42));
 		
 		b.swapPlayer(p1, p2);
-		assertEquals(p2, b.getCell(10));
-		assertEquals(p1, b.getCell(42));
+		assertEquals(p1, b.getCell(42).getPlayer());
+		assertEquals(p2, b.getCell(10).getPlayer());
 	}
 
 	@Test

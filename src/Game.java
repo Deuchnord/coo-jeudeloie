@@ -7,7 +7,7 @@ public class Game {
 	private int noPlayer;
 	private ArrayList<Player> listPlayers;
 	
-	public Game(ArrayList playersList) throws IOException
+	public Game(ArrayList<Player> playersList) throws IOException
 	{
 		this.usingBoard=new Board();
 		this.noPlayer=0;

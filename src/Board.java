@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class Board {
@@ -87,6 +84,12 @@ public class Board {
 				file.close();
 				throw new IOException("Parse error: unknown key word "+words[0]+" on line "+line);
 			}
+		}
+		
+		for(int i = 1; i < cells.length; i++) {
+			
+			if(cells[i] == null)
+				cells[i] = new NormalCell(i);
 			
 		}
 		
@@ -101,12 +104,14 @@ public class Board {
 	 * @param p1 
 	 * @param p2
 	 */
-	public void swapPlayer(Player p1,Player p2)
+	public void swapPlayer(Player p1, Player p2)
 	{
-		Cell temporaryCell;
-		temporaryCell = p1.getCell();
+		Cell temporaryCell = p1.getCell();
 		p1.setCell(p2.getCell());
 		p2.setCell(temporaryCell);
+		
+		p1.getCell().welcome(p1);
+		p2.getCell().welcome(p2);
 	}
 	
 	public Cell getCell(int indexCell)
