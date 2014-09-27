@@ -35,6 +35,14 @@ public class WaitCell extends AbstractCell {
 		
 	}
 	
+	/**
+	 * @return the waiting counter of the cell.
+	 */
+	public int getWaitingCounter()
+	{
+		return this.waitingCounter;
+	}
+	
 	@Override
 	public void welcome(Player p) {
 		
