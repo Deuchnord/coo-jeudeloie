@@ -12,7 +12,6 @@ public class Game {
 		this.usingBoard=new Board();
 		this.noPlayer=0;
 		this.listPlayers=playersList;
-	
 	}
 	
 	/**
