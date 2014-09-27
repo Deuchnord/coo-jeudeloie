@@ -16,7 +16,7 @@ public class Board {
 	public Board() throws IOException
 	{
 		// TODO see for the path 
-		this("/home/l3/tanghe/Documents/COO/jeudeloie/boards/default");
+		this("boards/default");
 	}
 	
 	/**
