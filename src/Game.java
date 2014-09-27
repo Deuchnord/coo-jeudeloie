@@ -34,9 +34,10 @@ public class Game {
 				usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
 			}
 			else
+			{
 				targetCell.welcome(playerThisTurn);
 				playerThisTurn.setCell(targetCell);
-				targetCell.welcome(playerThisTurn);
+			}
 			
 		}
 		
