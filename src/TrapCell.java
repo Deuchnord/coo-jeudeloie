@@ -10,13 +10,6 @@ public class TrapCell extends AbstractCell {
 	}
 	
 	@Override
-	public int handleMove(int d) {
-		
-		return this.index;
-		
-	}
-	
-	@Override
 	public boolean canBeLeftNow() {
 		
 		return false;

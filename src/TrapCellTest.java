@@ -6,8 +6,14 @@ import org.junit.Test;
 public class TrapCellTest {
 
 	@Test
-	public void testHandleMove() {
-		TrapCell tc = TrapCell(31);
+	public void testCanBeLeftNow() {
+		TrapCell tc = new TrapCell(31);
+		assertFalse(tc.canBeLeftNow());
+	}
+	
+	public void testIsRetaining() {
+		TrapCell tc = new TrapCell(31);
+		assertTrue(tc.isRetaining());
 	}
 
 }
