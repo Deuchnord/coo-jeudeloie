@@ -24,7 +24,7 @@ public class Game {
 		
 		for(Player p:this.listPlayers)
 		{
-			p.setCell(usingBoard.getCell(0));
+			p.setCell(usingBoard.getCell(1));
 		}
 		
 		while(this.isFinished())
@@ -35,20 +35,20 @@ public class Game {
 			if(playerThisTurn.getCell().canBeLeftNow())
 			{
 				score=this.throwDie();
-				System.out.println(playerThisTurn +"got a "+score);
+				System.out.println(playerThisTurn.getName() +" got a "+score);
 				
 				int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
 				Cell targetCell=usingBoard.getCell(index);
-				System.out.println(playerThisTurn+" should go to the cell "+index);
+				System.out.println(playerThisTurn.getName()+" should go to the cell "+index);
 				
 				index=usingBoard.normalize(targetCell.handleMove(score));
 				targetCell=usingBoard.getCell(index);
 				
-				System.out.println("Well, "+playerThisTurn+" goes to the cell" +index);
+				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell" +index);
 				
 				if(targetCell.isBusy())
 				{
-					System.out.println("Oh, this cell is busy"+playerThisTurn+" and "+ targetCell.getPlayer()+" will swap.");
+					System.out.println("Oh, this cell is busy"+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" will swap.");
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
 				}
 				else

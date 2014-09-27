@@ -10,6 +10,7 @@ public class Player {
 	public Player(String playerName)
 	{
 		this.name=playerName;
+		this.playerSCell=new NormalCell(0);
 	}
 	
 	/**
