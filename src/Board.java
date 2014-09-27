@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class Board {
@@ -17,9 +14,11 @@ public class Board {
 	 * @throws IOException happens if the file could not be opened.
 	 */
 	public Board() throws IOException
-	{		
+	{
+		// TODO see for the path 
 		this("boards/default");
 	}
+	
 	/**
 	 * Constructs a board with custom cells placement.
 	 * Read the documentation about the board configuration files for more details.
@@ -29,14 +28,17 @@ public class Board {
 	 */
 	public Board(String configFile) throws IOException {
 		
-		FileInputStream input = new FileInputStream(configFile);
-		BufferedReader file = new BufferedReader(new InputStreamReader(input));
+		//FileInputStream input = new FileInputStream(configFile);
+		//BufferedReader file = new BufferedReader(new InputStreamReader(input));
+		File input = new File(configFile);
+		BufferedReader file = new BufferedReader(new FileReader(input));
+
 		
 		String line = "";
 		int lastCell = 0;
 		
-		while((line = file.readLine().toLowerCase()) != null) {
-			
+		while((line = file.readLine()) != null) {
+			line = line.toLowerCase();
 			String[] words = line.split(" ");
 				
 			String command = words[0].toLowerCase();
@@ -44,6 +46,7 @@ public class Board {
 			if(command.equals("number_cells")) {
 				command = words[1];
 				lastCell = Integer.parseInt(command);
+				cells = new Cell[lastCell+1];
 			}
 			
 			else if(command.equals("goose")) {
@@ -77,8 +80,16 @@ public class Board {
 					cells[index] = new TeleportCell(index, dest);
 				}
 			}
-			else
+			else {
+				file.close();
 				throw new IOException("Parse error: unknown key word "+words[0]+" on line "+line);
+			}
+		}
+		
+		for(int i = 1; i < cells.length; i++) {
+			
+			if(cells[i] == null)
+				cells[i] = new NormalCell(i);
 			
 		}
 		
@@ -93,12 +104,14 @@ public class Board {
 	 * @param p1 
 	 * @param p2
 	 */
-	public void swapPlayer(Player p1,Player p2)
+	public void swapPlayer(Player p1, Player p2)
 	{
-		Cell temporaryCell;
-		temporaryCell = p1.getCell();
+		Cell temporaryCell = p1.getCell();
 		p1.setCell(p2.getCell());
 		p2.setCell(temporaryCell);
+		
+		p1.getCell().welcome(p1);
+		p2.getCell().welcome(p2);
 	}
 	
 	public Cell getCell(int indexCell)
@@ -106,16 +119,22 @@ public class Board {
 		return cells[indexCell];
 	}
 	
+
+
 	/**
 	 * @param supposedIndexCell The cell to check.
 	 * @return the cell's index normalised.
 	 */
 	public int normalize(int supposedIndexCell)
 	{
-		if(supposedIndexCell>LAST_CELL)
-			supposedIndexCell+=LAST_CELL-supposedIndexCell;
-		return supposedIndexCell;
+		int normalizedIndex = 0;
+		
+		if(supposedIndexCell > LAST_CELL) {
+			normalizedIndex = supposedIndexCell - LAST_CELL;
+			return LAST_CELL - normalizedIndex;
+		}
+		else
+			return supposedIndexCell;
 			
 	}
-	
 }

@@ -29,5 +29,15 @@ public class Player {
 	{
 		this.playerSCell = newCell;
 	}
+	
+	/**
+	 * 
+	 * @return the player's name
+	 */
+	public String getName() {
+		
+		return this.name;
+		
+	}
 
 }
