@@ -20,26 +20,50 @@ public class Game {
 	public void play()
 	{
 		int score;
-		Player playerThisTurn=this.nextPlayer();
-		if(playerThisTurn.getCell().canBeLeftNow())
+		Player playerThisTurn=null;
+		
+		for(Player p:this.listPlayers)
 		{
-			score=this.throwDie();
-			int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
-			Cell targetCell=usingBoard.getCell(index);
-			index=usingBoard.normalize(targetCell.handleMove(score));
-			targetCell=usingBoard.getCell(index);
+			p.setCell(usingBoard.getCell(0));
+		}
+		
+		while(this.isFinished())
+		{
+			playerThisTurn=this.nextPlayer();
+			System.out.println("It's "+playerThisTurn.getName()+"'s turn now !");
 			
-			if(targetCell.isBusy())
+			if(playerThisTurn.getCell().canBeLeftNow())
 			{
-				usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
+				score=this.throwDie();
+				System.out.println(playerThisTurn +"got a "+score);
+				
+				int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
+				Cell targetCell=usingBoard.getCell(index);
+				System.out.println(playerThisTurn+" should go to the cell "+index);
+				
+				index=usingBoard.normalize(targetCell.handleMove(score));
+				targetCell=usingBoard.getCell(index);
+				
+				System.out.println("Well, "+playerThisTurn+" goes to the cell" +index);
+				
+				if(targetCell.isBusy())
+				{
+					System.out.println("Oh, this cell is busy"+playerThisTurn+" and "+ targetCell.getPlayer()+" will swap.");
+					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
+				}
+				else
+				{
+					targetCell.welcome(playerThisTurn);
+					playerThisTurn.setCell(targetCell);
+				}
 			}
 			else
 			{
-				targetCell.welcome(playerThisTurn);
-				playerThisTurn.setCell(targetCell);
+				System.out.println("Oh! " + playerThisTurn.getName()+"is blocked. Next turn.");
 			}
 			
 		}
+		System.out.println("Congratulations! won!");
 		
 	}
 	
@@ -49,7 +73,7 @@ public class Game {
 	public boolean isFinished()
 	{
 		boolean gameSet;
-		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer()==null)
+		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer()!=null)
 		{
 			gameSet=false;
 		}
