@@ -25,7 +25,7 @@ public class Game {
 		
 		for(Player p:this.listPlayers)
 		{
-			p.setCell(usingBoard.getCell(1));
+			p.setCell(usingBoard.getCell(0));
 		}
 		
 		while(!this.isFinished())
