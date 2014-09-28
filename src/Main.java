@@ -37,7 +37,7 @@ public class Main {
 		}
 		
 		try {
-				if(args[0]==null)
+				if(args[1]==null)
 				{
 					Game newGame = new Game(playersList);
 					newGame.play();
