@@ -49,14 +49,12 @@ public class Game {
 				
 				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell " +index+".");
 				
-				Player pOnTC = targetCell.getPlayer();
-				
 				if(targetCell.isBusy() && !targetCell.getPlayer().equals(playerThisTurn))
 				{
 					// Another player is already on this cell, swapping.
 					System.out.println("Oh, this cell is already busy, "+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" swap.");
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
-					displayTypeOfCell(targetCell, playerThisTurn);
+					displayTypeOfCell(targetCell, targetCell.getPlayer());
 				}
 				else if(targetCell.isBusy() && targetCell.getPlayer().equals(playerThisTurn))
 				{
@@ -72,7 +70,7 @@ public class Game {
 			}
 			else
 			{
-				System.out.println("Oh! " + playerThisTurn.getName()+" is blocked. Next turn.");
+				System.out.println("Oops! " + playerThisTurn.getName()+" is blocked. Next turn.");
 			}
 			
 		}
