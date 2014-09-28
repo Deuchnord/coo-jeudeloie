@@ -40,49 +40,101 @@ public class Board {
 		while((line = file.readLine()) != null) {
 			line = line.toLowerCase();
 			String[] words = line.split(" ");
-				
+			
 			String command = words[0].toLowerCase();
 			
 			if(command.equals("number_cells")) {
 				command = words[1];
 				lastCell = Integer.parseInt(command);
+				if(lastCell < 12) {
+					file.close();
+					throw new IOException("Error in the configuration file: the NUMBER_CELL parameter must be ≥ 12");
+				}
 				cells = new Cell[lastCell+1];
+				cells[0] = new NormalCell(0); 
 			}
 			
 			else if(command.equals("goose")) {
+				if(lastCell == 0) {
+					file.close();
+					throw new IOException("Error in the configuration file: before specifying a special cell, you must indicate the number of cells!");
+				}
+				
 				for(int i = 1; i < words.length;i++) {
 					int index = Integer.parseInt(words[i]);
+					
+					if(index == 0) {
+						file.close();
+						throw new IOException("Error in the configuration file: the start cell cannot be a Goose cell!");
+					}
+					
 					cells[index] = new GooseCell(index);
 				}
 			}
 			
 			else if(command.equals("trap")) {
+				if(lastCell == 0) {
+					file.close();
+					throw new IOException("Error in the configuration file: before specifying a special cell, you must indicate the number of cells!");
+				}
+				
 				for(int i = 1; i < words.length;i++) {
 					int index = Integer.parseInt(words[i]);
+					
+					if(index == 0) {
+						file.close();
+						throw new IOException("Error in the configuration file: the start cell cannot be a Trap cell!");
+					}
+					
 					cells[index] = new TrapCell(index);
 				}
 			}
 			
 			else if(command.equals("wait")) {
+				if(lastCell == 0) {
+					file.close();
+					throw new IOException("Error in the configuration file: before specifying a special cell, you must indicate the number of cells!");
+				}
+				
 				for(int i = 1; i < words.length;i++) {
 					String[] data = words[i].split(":");
 					int index = Integer.parseInt(data[0]),
 							time = Integer.parseInt(data[1]);
+					
+					if(index == 0) {
+						file.close();
+						throw new IOException("Error in the configuration file: the start cell cannot be a Wait cell!");
+					}
+					
 					cells[index] = new WaitCell(index, time);
 				}
 			}
 			
 			else if(command.equals("teleport")) {
+				if(lastCell == 0) {
+					file.close();
+					throw new IOException("Error in the configuration file: before specifying a special cell, you must indicate the number of cells!");
+				}
+				
 				for(int i = 1; i < words.length;i++) {
 					String[] data = words[i].split(":");
 					int index = Integer.parseInt(data[0]),
 							dest = Integer.parseInt(data[1]);
+					
+					if(index == 0) {
+						file.close();
+						throw new IOException("Error in the configuration file: the start cell cannot be a Teleport cell!");
+					}
+					
 					cells[index] = new TeleportCell(index, dest);
 				}
 			}
+			
+			else if(line.equals("")); // Ignoring void lines
+			
 			else {
 				file.close();
-				throw new IOException("Parse error: unknown key word "+words[0]+" on line "+line);
+				throw new IOException("Error in the configuration file: unknown key word "+words[0]+" on line "+line);
 			}
 		}
 		
