@@ -37,15 +37,17 @@ public class Main {
 		}
 		
 		try {
-				if(args[1]==null)
+			Game newGame;
+				if(args[0]==null)
 				{
-					Game newGame = new Game(playersList);
-					newGame.play();
+					newGame = new Game(playersList);
+					
 				}
 				else
 				{
-					Game newGame= new Game(playersList,args[0]);
+					newGame= new Game(playersList,args[0]);
 				}
+				newGame.play();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
