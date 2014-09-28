@@ -42,14 +42,7 @@ public class Game {
 				Cell targetCell=usingBoard.getCell(index);
 				System.out.println(playerThisTurn.getName()+" should go to the cell "+index+".");
 				
-				if(usingBoard.getCell(index) instanceof GooseCell)
-					System.out.println("That's a Goose cell! "+playerThisTurn.getName()+"'s score is doubled!");
-				else if(usingBoard.getCell(index) instanceof TrapCell)
-					System.out.println("Gosh, that's a Trap cell... Sorry, "+playerThisTurn.getName()+", you'll be blocked here for a moment!");
-				else if(usingBoard.getCell(index) instanceof WaitCell)
-					System.out.println("Oh, my, that's a Wait cell, "+playerThisTurn.getName()+" will have to wait a little.");
-				else if(usingBoard.getCell(index) instanceof TeleportCell)
-					System.out.println("What's happening? "+playerThisTurn.getName()+" feels strange: he just reached a Teleport Cell!");
+				displayTypeOfCell(usingBoard.getCell(index), playerThisTurn);
 				
 				index=usingBoard.normalize(targetCell.handleMove(score));
 				targetCell=usingBoard.getCell(index);
@@ -61,6 +54,7 @@ public class Game {
 					// Another player is already on this cell, swapping.
 					System.out.println("Oh, this cell is already busy, "+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" swap.");
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
+					displayTypeOfCell(targetCell, playerThisTurn);
 				}
 				else if(targetCell.isBusy() && targetCell.getPlayer().equals(playerThisTurn))
 				{
@@ -85,6 +79,23 @@ public class Game {
 		else
 			System.out.println("\nEverybody is blocked, end of the game.");
 		
+	}
+	
+	/**
+	 * Displays a message indicating which type of cell the player p has just reached. 
+	 * @param c the cell reached by the player
+	 * @param p the player who reached the cell
+	 */
+	
+	private void displayTypeOfCell(Cell c, Player p) {
+		if(c instanceof GooseCell)
+			System.out.println("That's a Goose cell! "+p.getName()+"'s score is doubled!");
+		else if(c instanceof TrapCell)
+			System.out.println("Gosh, that's a Trap cell... Sorry, "+p.getName()+", you'll be blocked here for a moment!");
+		else if(c instanceof WaitCell)
+			System.out.println("Oh, my, that's a Wait cell, "+p.getName()+" will have to wait a little.");
+		else if(c instanceof TeleportCell)
+			System.out.println("What's happening? "+p.getName()+" feels strange: he just reached a Teleport Cell!");
 	}
 	
 	/**
