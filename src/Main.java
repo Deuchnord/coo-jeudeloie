@@ -38,16 +38,17 @@ public class Main {
 		
 		try {
 			Game newGame;
-				if(args[0]==null)
-				{
-					newGame = new Game(playersList);
-					
-				}
-				else
-				{
-					newGame= new Game(playersList,args[0]);
-				}
-				newGame.play();
+			if(args.length == 0)
+			{
+				newGame = new Game(playersList);
+				
+			}
+			else
+			{
+				newGame= new Game(playersList,args[0]);
+			}
+			
+			newGame.play();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
