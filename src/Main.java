@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
 
 	/**
-	 * @param args
+	 * @param args[0] The board file's path. If there is no arguments, the default board will be loaded.
 	 */
 	public static void main(String[] args) {
 		ArrayList<Player> playersList=new ArrayList<Player>();
