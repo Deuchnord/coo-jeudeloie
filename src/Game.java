@@ -36,7 +36,7 @@ public class Game {
 			if(playerThisTurn.getCell().canBeLeftNow())
 			{
 				score=this.throwDie();
-				System.out.println(playerThisTurn.getName() +" launches the dice and gets a "+score+".");
+				System.out.println(playerThisTurn.getName() +" throw the dice and gets "+score+".");
 				
 				int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
 				Cell targetCell=usingBoard.getCell(index);
