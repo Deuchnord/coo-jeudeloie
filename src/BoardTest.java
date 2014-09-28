@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class BoardTest {
 
+	@SuppressWarnings("unused")
 	@Test
 	public void testBoard() {
 		
@@ -16,6 +17,7 @@ public class BoardTest {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	@Test(expected=IOException.class)
 	public void testBoardWithANotExistingFile() throws IOException {
 		
@@ -23,6 +25,7 @@ public class BoardTest {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	@Test(expected=IOException.class)
 	public void testBoardWithAFileContainingASyntaxError() throws IOException {
 		

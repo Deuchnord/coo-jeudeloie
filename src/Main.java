@@ -19,11 +19,13 @@ public class Main {
 			nbplayer=sc.nextInt();
 		} catch(InputMismatchException e) {
 			System.out.println("What do you mean? That's not a number!");
+			sc.close();
 			return;
 		}
 		
 		if(nbplayer < 2) {
 			System.out.println("Sorry, there should be at least 2 players!");
+			sc.close();
 			return;
 		}
 		
@@ -42,6 +44,7 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 		
+		sc.close();
 
 	}
 

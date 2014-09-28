@@ -15,6 +15,13 @@ public class Game {
 		this.listPlayers=playersList;
 	}
 	
+	public Game(ArrayList<Player> playersList, String board) throws IOException
+	{
+		this.usingBoard=new Board(board);
+		this.noPlayer=0;
+		this.listPlayers=playersList;
+	}
+	
 	/**
 	 * function that plays the game.
 	 */
