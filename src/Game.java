@@ -56,9 +56,9 @@ public class Game {
 				
 				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell " +index+".");
 				
-				if(targetCell.isBusy() && targetCell.getPlayer().getName() != playerThisTurn.getName())
+				if(targetCell.isBusy() && !targetCell.getPlayer().equals(playerThisTurn))
 				{
-					// Another player is already on this cell, swaping.
+					// Another player is already on this cell, swapping.
 					System.out.println("Oh, this cell is already busy, "+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" swap.");
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
 				}
