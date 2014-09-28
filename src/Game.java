@@ -6,6 +6,7 @@ public class Game {
 	private Board usingBoard;
 	private int noPlayer;
 	private ArrayList<Player> listPlayers;
+	private boolean allPlayersBlockedForever;
 	
 	public Game(ArrayList<Player> playersList) throws IOException
 	{
@@ -27,29 +28,44 @@ public class Game {
 			p.setCell(usingBoard.getCell(1));
 		}
 		
-		while(this.isFinished())
+		while(!this.isFinished())
 		{
 			playerThisTurn=this.nextPlayer();
-			System.out.println("It's "+playerThisTurn.getName()+"'s turn now !");
+			System.out.println("\nIt's "+playerThisTurn.getName()+"'s turn now!");
 			
 			if(playerThisTurn.getCell().canBeLeftNow())
 			{
 				score=this.throwDie();
-				System.out.println(playerThisTurn.getName() +" got a "+score);
+				System.out.println(playerThisTurn.getName() +" launches the dice and gets a "+score+".");
 				
 				int index=usingBoard.normalize(playerThisTurn.getCell().getIndex()+score);
 				Cell targetCell=usingBoard.getCell(index);
-				System.out.println(playerThisTurn.getName()+" should go to the cell "+index);
+				System.out.println(playerThisTurn.getName()+" should go to the cell "+index+".");
+				
+				if(usingBoard.getCell(index) instanceof GooseCell)
+					System.out.println("That's a Goose cell! "+playerThisTurn.getName()+"'s score is doubled!");
+				else if(usingBoard.getCell(index) instanceof TrapCell)
+					System.out.println("Gosh, that's a Trap cell... Sorry, "+playerThisTurn.getName()+", you'll be blocked here for a moment!");
+				else if(usingBoard.getCell(index) instanceof WaitCell)
+					System.out.println("Oh, my, that's a Wait cell, "+playerThisTurn.getName()+" will have to wait a little.");
+				else if(usingBoard.getCell(index) instanceof TeleportCell)
+					System.out.println("What's happening? "+playerThisTurn.getName()+" feels strange: he just reached a Teleport Cell!");
 				
 				index=usingBoard.normalize(targetCell.handleMove(score));
 				targetCell=usingBoard.getCell(index);
 				
-				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell" +index);
+				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell " +index+".");
 				
-				if(targetCell.isBusy())
+				if(targetCell.isBusy() && targetCell.getPlayer().getName() != playerThisTurn.getName())
 				{
-					System.out.println("Oh, this cell is busy"+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" will swap.");
+					// Another player is already on this cell, swaping.
+					System.out.println("Oh, this cell is already busy, "+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" swap.");
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
+				}
+				else if(targetCell.isBusy() && targetCell.getPlayer().equals(playerThisTurn))
+				{
+					// The current player was already on this cell.
+					System.out.println(playerThisTurn.getName()+" stucks!");
 				}
 				else
 				{
@@ -59,11 +75,15 @@ public class Game {
 			}
 			else
 			{
-				System.out.println("Oh! " + playerThisTurn.getName()+"is blocked. Next turn.");
+				System.out.println("Oh! " + playerThisTurn.getName()+" is blocked. Next turn.");
 			}
 			
 		}
-		System.out.println("Congratulations! won!");
+		
+		if(!allPlayersBlockedForever)
+			System.out.println("Congratulations, you won!");
+		else
+			System.out.println("\nEverybody is blocked, end of the game.");
 		
 	}
 	
@@ -73,14 +93,23 @@ public class Game {
 	public boolean isFinished()
 	{
 		boolean gameSet;
-		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer()!=null)
+		
+		allPlayersBlockedForever = true;
+		
+		for(Player p : listPlayers) {
+			// Loop verifying that at least one player is not blocked in a Trap cell
+			if(!p.getCell().isRetaining())
+				allPlayersBlockedForever = false;
+		}
+		if(this.usingBoard.getCell(usingBoard.LAST_CELL).getPlayer() == null && !allPlayersBlockedForever)
 		{
-			gameSet=false;
+			gameSet = false;
 		}
 		else
 		{
-			gameSet=true;
+			gameSet = true;
 		}
+		
 		return gameSet;
 	}
 	
