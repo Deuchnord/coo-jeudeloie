@@ -49,6 +49,8 @@ public class Game {
 				
 				System.out.println("Well, "+playerThisTurn.getName()+" goes to the cell " +index+".");
 				
+				Player pOnTC = targetCell.getPlayer();
+				
 				if(targetCell.isBusy() && !targetCell.getPlayer().equals(playerThisTurn))
 				{
 					// Another player is already on this cell, swapping.
@@ -64,6 +66,7 @@ public class Game {
 				else
 				{
 					targetCell.welcome(playerThisTurn);
+					playerThisTurn.getCell().welcome(null);
 					playerThisTurn.setCell(targetCell);
 				}
 			}
