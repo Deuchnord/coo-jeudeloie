@@ -1,7 +1,7 @@
 
 public class TeleportCell extends AbstractCell {
 
-	int dest;
+	private int dest;
 	
 	public TeleportCell(int index, int dest) {
 		

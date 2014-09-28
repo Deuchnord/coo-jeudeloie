@@ -53,8 +53,9 @@ public class Game {
 				{
 					// Another player is already on this cell, swapping.
 					System.out.println("Oh, this cell is already busy, "+playerThisTurn.getName()+" and "+ targetCell.getPlayer().getName()+" swap.");
+					System.out.println(targetCell.getPlayer().getName()+", you are now on the cell N°"+playerThisTurn.getCell().getIndex()+".");
+					displayTypeOfCell(playerThisTurn.getCell(), targetCell.getPlayer());
 					usingBoard.swapPlayer(playerThisTurn, targetCell.getPlayer());
-					displayTypeOfCell(targetCell, targetCell.getPlayer());
 				}
 				else if(targetCell.isBusy() && targetCell.getPlayer().equals(playerThisTurn))
 				{
@@ -95,8 +96,10 @@ public class Game {
 			System.out.println("Gosh, that's a Trap cell... Sorry, "+p.getName()+", you'll be blocked here for a moment!");
 		else if(c instanceof WaitCell)
 			System.out.println("Oh, my, that's a Wait cell, "+p.getName()+" will have to wait a little.");
-		else if(c instanceof TeleportCell)
-			System.out.println("What's happening? "+p.getName()+" feels strange: he just reached a Teleport Cell!");
+		else if(c instanceof TeleportCell) {
+			System.out.println("What's happening? "+p.getName()+" feels strange: he just reached a Teleport cell!");
+			displayTypeOfCell(usingBoard.getCell(c.handleMove(0)), p);
+		}
 	}
 	
 	/**
