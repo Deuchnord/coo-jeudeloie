@@ -1,0 +1,13 @@
+Game of the Goose by Jérôme Tanghe and Quentin Van de Kadsye.
+
+Content of this archive:
+- src/
+  The source files of the project
+- boards/
+  The config files for boards. One of them, “file_with_an_error”, contents a deliberate mistake to test that the program fails if a file is not correctly wrote.
+- doc/
+  The complete javadoc of the project
+- gameofgoose.jar
+  A compiled executable of the program.
+- Documentation.pdf
+  A document explaining how to use the program, and how to create a new board.
